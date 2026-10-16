@@ -1,0 +1,62 @@
+# Vendored from HyTri scripts/docker/Dockerfile.defects4j @ 4039de468073f7a81c3eab2f577654880205467f
+# Modified: copies only collection/collect_defects4j_v3.py (v1/v2 collectors not vendored).
+# Provided as-is for provenance of data/sources; not re-run for this release.
+# Dockerfile for Defects4J Java bug benchmark
+# Using Amazon Corretto (reliable on ARM Macs)
+FROM amazoncorretto:11
+
+# Install system dependencies (Amazon Linux uses yum)
+RUN yum install -y \
+    git \
+    curl \
+    wget \
+    tar \
+    gzip \
+    make \
+    gcc \
+    gcc-c++ \
+    perl \
+    perl-DBI \
+    perl-ExtUtils-MakeMaker \
+    perl-ExtUtils-Manifest \
+    perl-App-cpanminus \
+    subversion \
+    python3 \
+    python3-pip \
+    unzip \
+    which \
+    && yum clean all
+
+# Install additional Perl dependencies via cpanm
+RUN cpanm --notest DBD::CSV String::Interpolate
+
+# Install Maven manually (not in Amazon Linux repos)
+RUN curl -sL https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz | tar xz -C /opt && \
+    ln -s /opt/apache-maven-3.8.6/bin/mvn /usr/local/bin/mvn
+
+# Install Ant manually
+RUN curl -sL https://archive.apache.org/dist/ant/binaries/apache-ant-1.10.12-bin.tar.gz | tar xz -C /opt && \
+    ln -s /opt/apache-ant-1.10.12/bin/ant /usr/local/bin/ant
+
+# Clone and setup Defects4J
+WORKDIR /opt
+RUN git clone https://github.com/rjust/defects4j.git
+WORKDIR /opt/defects4j
+
+# Add Defects4J to PATH
+ENV PATH="/opt/defects4j/framework/bin:$PATH"
+
+# Run init.sh (downloads external dependencies)
+RUN ./init.sh && echo "Defects4J init completed successfully"
+
+# Verify installation
+RUN defects4j info -p Lang && echo "Defects4J verification passed"
+
+# Set working directory
+WORKDIR /workspace
+
+# Copy the collection scripts (v2 and v3)
+COPY collection/collect_defects4j_v3.py /collect_defects4j_v3.py
+
+# Default command - use v3 which includes diffs
+CMD ["python3", "/collect_defects4j_v3.py"]

@@ -1,0 +1,39 @@
+# Vendored from HyTri scripts/docker/Dockerfile.bugswarm @ 4039de468073f7a81c3eab2f577654880205467f
+# Provided as-is for provenance of data/sources; not re-run for this release.
+# BugSwarm Failure Collection Container
+# 
+# This container pulls BugSwarm Docker images and extracts test failures.
+# Requires Docker-in-Docker (DinD) to pull and run BugSwarm images.
+#
+# Usage:
+#   docker build -t hytri-bugswarm -f Dockerfile.bugswarm .
+#   docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+#              -v $(pwd)/data/bugswarm:/output \
+#              hytri-bugswarm [options]
+
+FROM python:3.10-slim
+
+# Install Docker CLI (not daemon - we'll use host's Docker via socket)
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    lsb-release \
+    && curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list \
+    && apt-get update \
+    && apt-get install -y docker-ce-cli \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up working directory
+WORKDIR /collector
+
+# Copy collection script
+COPY collect_bugswarm.py .
+
+# Make output directory
+RUN mkdir -p /output
+
+# Default: collect 50 artifacts with ≥3 failures
+ENTRYPOINT ["python", "collect_bugswarm.py"]
+CMD ["--min-failures", "3", "--limit", "50", "--output", "/output"]
+

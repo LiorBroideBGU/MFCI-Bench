@@ -1,0 +1,54 @@
+cff-version: 1.2.0
+message: "If you use MFCI-Bench, please cite the ASE 2026 paper that introduced it."
+title: "MFCI-Bench: Multi-Fault CI Builds Benchmark"
+type: dataset
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/LiorBroideBGU/MFCI-Bench"
+keywords:
+  - benchmark
+  - continuous integration
+  - test failure triage
+  - fault localization
+  - Defects4J
+  - Bears
+  - BugSwarm
+authors:
+  - family-names: Broide
+    given-names: Lior
+    affiliation: Ben-Gurion University of the Negev
+    orcid: "https://orcid.org/0009-0009-6118-7554"
+  - family-names: Mordoch
+    given-names: Argaman
+    affiliation: Ben-Gurion University of the Negev
+    orcid: "https://orcid.org/0000-0003-3502-1461"
+  - family-names: Stern
+    given-names: Roni
+    affiliation: Ben-Gurion University of the Negev
+    orcid: "https://orcid.org/0000-0003-0043-8179"
+preferred-citation:
+  type: conference-paper
+  title: "HyTri: Hybrid Triage of CI Failures via LLM Guided Semantic Reasoning and Change Attribution"
+  authors:
+    - family-names: Broide
+      given-names: Lior
+      orcid: "https://orcid.org/0009-0009-6118-7554"
+    - family-names: Mordoch
+      given-names: Argaman
+      orcid: "https://orcid.org/0000-0003-3502-1461"
+    - family-names: Stern
+      given-names: Roni
+      orcid: "https://orcid.org/0000-0003-0043-8179"
+  collection-title: "Proceedings of the 41st IEEE/ACM International Conference on Automated Software Engineering (ASE '26)"
+  conference:
+    name: "41st IEEE/ACM International Conference on Automated Software Engineering (ASE '26)"
+    city: Munich
+    country: DE
+    date-start: 2026-10-12
+    date-end: 2026-10-16
+  publisher:
+    name: "Association for Computing Machinery"
+  year: 2026
+  doi: "10.1145/3832783.3837467"
+  isbn: "979-8-4007-2882-2"
+  license: CC-BY-4.0

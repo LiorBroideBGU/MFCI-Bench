@@ -1,0 +1,59 @@
+{
+  "created_at": "2026-01-25T16:58:43.840105",
+  "source": "Bears dataset (realistic)",
+  "realism_config": {
+    "prefer_same_package": true,
+    "prefer_similar_exceptions": true,
+    "prefer_shared_frames": true,
+    "difficulty_distribution_target": {
+      "easy": 0.2,
+      "medium": 0.4,
+      "hard": 0.4
+    }
+  },
+  "config": {
+    "min_tests_per_bug": 2,
+    "min_bugs_per_build": 2,
+    "max_bugs_per_build": 5,
+    "random_seed": 42,
+    "max_builds": null
+  },
+  "stats": {
+    "total_builds": 12856,
+    "total_failures": 460829,
+    "unique_projects": 11,
+    "avg_failures_per_build": 35.84544181705041,
+    "avg_clusters_per_build": 4.473864343497199,
+    "avg_similarity_score": 0.22874457547995916,
+    "difficulty_distribution": {
+      "medium": 10698,
+      "hard": 1972,
+      "easy": 186
+    },
+    "cluster_distribution": {
+      "2": 252,
+      "3": 1163,
+      "4": 3682,
+      "5": 7759
+    },
+    "builds_with_diffs": 12800,
+    "total_diff_files": 318484
+  },
+  "by_difficulty": {
+    "easy": {
+      "builds": 186,
+      "total_failures": 5382,
+      "avg_similarity": 0.056734038597128736
+    },
+    "medium": {
+      "builds": 10698,
+      "total_failures": 421127,
+      "avg_similarity": 0.20872758732254837
+    },
+    "hard": {
+      "builds": 1972,
+      "total_failures": 34320,
+      "avg_similarity": 0.35355983874983077
+    }
+  }
+}

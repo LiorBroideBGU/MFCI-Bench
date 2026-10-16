@@ -1,0 +1,57 @@
+{
+  "created_at": "2026-01-20T22:05:17.552225",
+  "source": "BugSwarm dataset (realistic)",
+  "realism_config": {
+    "prefer_same_package": true,
+    "prefer_similar_exceptions": true,
+    "prefer_shared_frames": true,
+    "difficulty_distribution_target": {
+      "easy": 0.2,
+      "medium": 0.4,
+      "hard": 0.4
+    }
+  },
+  "config": {
+    "min_tests_per_bug": 2,
+    "min_bugs_per_build": 2,
+    "max_bugs_per_build": 5,
+    "random_seed": 42,
+    "max_builds": null
+  },
+  "stats": {
+    "total_builds": 4139,
+    "total_failures": 99146,
+    "unique_projects": 8,
+    "avg_failures_per_build": 23.954095192075382,
+    "avg_clusters_per_build": 4.098574534911815,
+    "avg_similarity_score": 0.1282471673443186,
+    "difficulty_distribution": {
+      "easy": 1797,
+      "hard": 359,
+      "medium": 1983
+    },
+    "cluster_distribution": {
+      "2": 299,
+      "3": 730,
+      "4": 1374,
+      "5": 1736
+    }
+  },
+  "by_difficulty": {
+    "easy": {
+      "builds": 1797,
+      "total_failures": 35075,
+      "avg_similarity": 0.06772852771161521
+    },
+    "medium": {
+      "builds": 1983,
+      "total_failures": 44044,
+      "avg_similarity": 0.1363269654547198
+    },
+    "hard": {
+      "builds": 359,
+      "total_failures": 20027,
+      "avg_similarity": 0.3865473226842695
+    }
+  }
+}

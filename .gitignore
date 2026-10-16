@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+build/
+dist/
+.DS_Store
+# full corpora (download with scripts/download_full.py or regenerate with mfci-generate)
+data/full/
+out/
